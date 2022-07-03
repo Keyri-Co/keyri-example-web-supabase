@@ -20,7 +20,8 @@ export default function Auth() {
         }
       }
     });
-  });
+  }, []);
+
   const handleLogin = async (email, password) => {
     try {
       setLoading(true);
