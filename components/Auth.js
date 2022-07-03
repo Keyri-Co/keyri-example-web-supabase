@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabaseClient';
 
 export default function Auth() {
@@ -6,10 +6,37 @@ export default function Auth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  useEffect(() => {
+    window.addEventListener('message', async (evt) => {
+      if (evt.data.keyri && evt.data.data && document.location.origin == evt.origin) {
+        const { data } = evt;
+
+        if (!data.error) {
+          let access_token = JSON.parse(data.data).data.token.accessToken;
+          console.log(access_token);
+          handleQrLogin(access_token);
+        } else {
+          alert('Keyri error');
+        }
+      }
+    });
+  });
   const handleLogin = async (email, password) => {
     try {
       setLoading(true);
-      const { user, error } = await logIn({ email, password });
+      const { user, error } = await supabase.auth.signIn({ email, password });
+      if (error) throw error;
+    } catch (error) {
+      alert(error.error_description || error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleQrLogin = async (access_token) => {
+    try {
+      setLoading(true);
+      const { user, error } = await supabase.auth.setAuth({ access_token });
       if (error) throw error;
     } catch (error) {
       alert(error.error_description || error.message);
@@ -51,6 +78,17 @@ export default function Auth() {
             <span>{loading ? 'Loading' : 'Log in'}</span>
           </button>
         </div>
+      </div>
+      <div className='col-1 form-widget'>
+        <iframe
+          title='KeyriQR'
+          src='/KeyriQR.html'
+          id='qr-frame'
+          height='300'
+          width='300'
+          scrolling='no'
+          style={{ border: 'solid 5px white' }}
+        ></iframe>
       </div>
     </div>
   );

@@ -53,7 +53,7 @@ export default function Avatar({ url, size, onUpload }) {
   return (
     <div>
       {avatarUrl ? (
-        <Image src={avatarUrl} alt='Avatar' className='avatar image' style={{ height: size, width: size }} />
+        <img src={avatarUrl} alt='Avatar' className='avatar image' style={{ height: size, width: size }} />
       ) : (
         <div className='avatar no-image' style={{ height: size, width: size }} />
       )}
