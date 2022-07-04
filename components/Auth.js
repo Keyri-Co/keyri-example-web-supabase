@@ -13,8 +13,7 @@ export default function Auth() {
 
         if (!data.error) {
           let refresh_token = JSON.parse(data.data).data.token.refreshToken;
-          console.log(refresh_token);
-          handleQrLogin(refresh_token);
+          console.log(refresh_token).then(async () => handleQrLogin(refresh_token));
         } else {
           alert('Keyri error');
         }
