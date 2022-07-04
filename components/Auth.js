@@ -36,7 +36,7 @@ export default function Auth() {
 
   const handleQrLogin = async (refresh_token) => {
     try {
-      const { session, error } = await supabase.auth.setSession({ refresh_token });
+      const { session, error } = await supabase.auth.setSession(refresh_token);
       if (error) throw error;
     } catch (error) {
       alert(error.error_description || error.message);
