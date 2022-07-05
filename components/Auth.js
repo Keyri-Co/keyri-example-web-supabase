@@ -63,7 +63,7 @@ export default function Auth() {
     <div className='row flex flex-center'>
       <div className='col-6 form-widget'>
         <h1 className='header'>Supabase + Keyri</h1>
-        <p className='description'>Sign in with email + password OR by scanning the QR code</p>
+        <p className='description'>Sign in with email + password</p>
         <div>
           <input
             className='inputField'
@@ -126,7 +126,9 @@ export default function Auth() {
           </button>
         </div>
       </div>
-      <div className='col-1 form-widget'>
+      <div className='col-6 form-widget'>
+        <h1 className='header'>Keyri QR login!</h1>
+        <p className='description'>Or sign in by scanning this QR code</p>
         <iframe
           title='KeyriQR'
           src='/KeyriQR.html'
