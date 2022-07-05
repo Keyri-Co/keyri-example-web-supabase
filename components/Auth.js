@@ -126,7 +126,7 @@ export default function Auth() {
           </button>
         </div>
       </div>
-      <div className='col-6 form-widget'>
+      <div className='col-4 form-widget'>
         <h1 className='header'>Keyri QR login!</h1>
         <p className='description'>Or sign in by scanning this QR code</p>
         <iframe
