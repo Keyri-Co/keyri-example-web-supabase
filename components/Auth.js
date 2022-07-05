@@ -13,11 +13,9 @@ export default function Auth() {
     window.addEventListener('message', async (evt) => {
       if (evt.data.keyri && evt.data.data && document.location.origin == evt.origin) {
         const { data } = evt;
-
         if (!data.error) {
           let refresh_token = JSON.parse(data.data).data.token.refreshToken;
           await handleQrLogin(refresh_token);
-          console.log(refresh_token);
         } else if (data.error) {
           console.log(`Keyri error: ${data.message}`);
         }
