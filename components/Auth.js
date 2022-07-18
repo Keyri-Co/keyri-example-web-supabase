@@ -131,7 +131,7 @@ export default function Auth() {
         <p className='description'>Or sign in by scanning this QR code</p>
         <iframe
           title='KeyriQR'
-          src='/KeyriQR.html'
+          src='/KeyriQR.html?Environment=dev&Origin=keyri-example-web-supabase.vercel.app'
           id='qr-frame'
           height='300'
           width='300'
