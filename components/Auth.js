@@ -15,7 +15,7 @@ export default function Auth() {
         const { data } = evt;
         if (!data.error) {
           console.log(JSON.parse(data.data));
-          let refresh_token = JSON.parse(data.data).data.refreshToken;
+          let refresh_token = JSON.parse(data.data);
           console.log(refresh_token);
           await handleQrLogin(refresh_token);
         } else if (data.error) {
